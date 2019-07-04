@@ -7,9 +7,7 @@ export default class extends React.Component {
 	static async getInitialProps() { // only for nextjs
 		let req = await fetch('https://api.audioboom.com/channels/recommended'); // isomorphic-fetch
 		let { body: channels } = await req.json()
-		
 		return { channels };
-
 	}
 
 	render() {
@@ -20,7 +18,7 @@ export default class extends React.Component {
 
 				<div className="channels">
 					{channels.map((channel) => (
-						<Link href="/channel" prefetch key={channel.id}>
+						<Link href={`/channel?id=${channel.id}`} prefetch key={channel.id}>
 							<a className="channel">
 								<img src={channel.urls.logo_image.original} alt="image" />
 								<h2>{channel.title}</h2>
